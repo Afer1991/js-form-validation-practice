@@ -1,0 +1,68 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: "Roboto";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #141619;
+}
+
+form {
+  background: #FFF;
+  padding: 32px 96px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+form > div:nth-of-type(6) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+input {
+  padding: 4px;
+  border: none;
+  border-bottom: 2px solid #050A44;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+span {
+  font-size: 0.8em;
+  color: #FF312E;
+}
+
+button {
+  background: #0A21C0;
+  color: #FFF;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
