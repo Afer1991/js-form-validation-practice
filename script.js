@@ -3,11 +3,12 @@ const email = document.getElementById("email");
 const country = document.getElementById("country");
 const zip = document.getElementById("zip");
 const password = document.getElementById("password");
-
+const confPw = document.getElementById("confirm-password");
 const emailSp = document.getElementById("email-sp");
 const countrySp = document.getElementById("country-sp");
 const zipSp = document.getElementById("zip-sp");
 const pwSp = document.getElementById("pw-sp");
+const confPwSp = document.getElementById("pw-conf-sp");
 
 email.addEventListener("input", (e) => {
   if (email.validity.valid) {
@@ -66,5 +67,25 @@ password.addEventListener("input", (e) => {
     pwSp.textContent = "Password must be between 8 and 15 characters";
     password.style.background = "#fdd";
     password.style.borderBottomColor = "#FF312E";
+  };
+});
+
+confPw.addEventListener("input", (e) => {
+  if (password.validity.valueMissing) {
+    confPwSp.textContent = "You must enter a password first";
+    confPw.style.background = "#fdd";
+    confPw.style.borderBottomColor = "#FF312E";
+  } else if (!password.validity.valid) {
+    confPwSp.textContent = "You must enter a valid password first";
+    confPw.style.background = "#fdd";
+    confPw.style.borderBottomColor = "#FF312E";
+  } else if (password.value != confPw.value) {
+    confPwSp.textContent = "Passwords don't match";
+    confPw.style.background = "#fdd";
+    confPw.style.borderBottomColor = "#FF312E";
+  } else {
+    confPwSp.innerHTML = "&nbsp";
+    confPw.style.background = "#FFF";
+    confPw.style.borderBottomColor = "#6EEB83";
   };
 });
