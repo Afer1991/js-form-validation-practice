@@ -10,7 +10,7 @@ const zipSp = document.getElementById("zip-sp");
 const pwSp = document.getElementById("pw-sp");
 const confPwSp = document.getElementById("pw-conf-sp");
 
-email.addEventListener("input", (e) => {
+const validateEmail = () => {
   if (email.validity.valid) {
     emailSp.innerHTML = "&nbsp";
     email.style.background = "#FFF";
@@ -24,9 +24,9 @@ email.addEventListener("input", (e) => {
     email.style.background = "#fdd";
     email.style.borderBottomColor = "#FF312E";
   };
-});
+};
 
-country.addEventListener("input", (e) => {
+const validateCountry = () => {
   if (country.validity.valid) {
     countrySp.innerHTML = "&nbsp";
     country.style.background = "#FFF";
@@ -36,9 +36,9 @@ country.addEventListener("input", (e) => {
     country.style.background = "#fdd";
     country.style.borderBottomColor = "#FF312E";
   };
-});
+};
 
-zip.addEventListener("input", (e) => {
+const validateZip = () => {
   if (zip.validity.valid) {
     zipSp.innerHTML = "&nbsp";
     zip.style.background = "#FFF";
@@ -52,9 +52,9 @@ zip.addEventListener("input", (e) => {
     zip.style.background = "#fdd";
     zip.style.borderBottomColor = "#FF312E";
   };
-});
+};
 
-password.addEventListener("input", (e) => {
+const validatePw = () => {
   if (password.validity.valid) {
     pwSp.innerHTML = "&nbsp";
     password.style.background = "#FFF";
@@ -68,9 +68,9 @@ password.addEventListener("input", (e) => {
     password.style.background = "#fdd";
     password.style.borderBottomColor = "#FF312E";
   };
-});
+};
 
-confPw.addEventListener("input", (e) => {
+const validatePwConf = () => {
   if (password.validity.valueMissing) {
     confPwSp.textContent = "You must enter a password first";
     confPw.style.background = "#fdd";
@@ -88,4 +88,60 @@ confPw.addEventListener("input", (e) => {
     confPw.style.background = "#FFF";
     confPw.style.borderBottomColor = "#6EEB83";
   };
+};
+
+email.addEventListener("input", (e) => {
+  validateEmail();
+});
+
+country.addEventListener("input", (e) => {
+  validateCountry();
+});
+
+zip.addEventListener("input", (e) => {
+  validateZip();
+});
+
+password.addEventListener("input", (e) => {
+  validatePw();
+});
+
+confPw.addEventListener("input", (e) => {
+  validatePwConf();
+});
+
+form.addEventListener("submit", (e) => {
+  validateEmail();
+  validateCountry();
+  validateZip();
+  validatePw();
+
+  if (password.validity.valid && confPw.validity.valueMissing) {
+    confPwSp.textContent = "Type your password again";
+    confPw.style.background = "#fdd";
+    confPw.style.borderBottomColor = "#FF312E";
+  } else if (password.validity.valid && password.value == confPw.value) {
+    confPwSp.innerHTML = "&nbsp";
+    confPw.style.background = "#FFF";
+    confPw.style.borderBottomColor = "#6EEB83";
+  } else if (password.validity.valid && password.value != confPw.value) {
+    confPwSp.textContent = "Passwords don't match";
+    confPw.style.background = "#fdd";
+    confPw.style.borderBottomColor = "#FF312E";
+  } else {
+    confPwSp.innerHTML = "&nbsp";
+    confPw.style.background = "#FFF";
+    confPw.style.borderBottomColor = "#050A44";
+  };
+
+  if (email.validity.valid &&
+      country.validity.valid &&
+      zip.validity.valid &&
+      password.validity.valid &&
+      confPw.validity.valid
+  ) {
+    alert("Good job completing the form! High Five!");
+  };
+
+  e.preventDefault();
 });
